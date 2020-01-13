@@ -7,6 +7,14 @@
     <link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css"/>
 </head>
 <body class="bg-light-blue black-70 pa4">
+<nav id="High Score flex justify-between bb b--yellow-10">
+    <a id="link yellow-70 hover-white no-underline flex items-center pa3" href="">High Scores</a>
+    <div id="timer pa3 flex items-center">
+        <div id="counter yellow dim mr3 mr4-ns" href="#0"></div>
+        <div id="btimeGauge"></div>
+        <div id="timeGauge"></div>
+    </div>
+</nav>
     <div id="container">
         <div id="start">Start Quiz!</div>
         <div id="quiz" style="display: none">
@@ -16,16 +24,15 @@
                 <div class="choice" id="A" onclick="checkAnswer('A')"></div>
                 <div class="choice" id="B" onclick="checkAnswer('B')"></div>
                 <div class="choice" id="C" onclick="checkAnswer('C')"></div>
+                <div class="choice" id="D" onclick="checkAnswer('D')"></div>
             </div>
-            <div id="timer">
-                <div id="counter"></div>
-                <div id="btimeGauge"></div>
-                <div id="timeGauge"></div>
+            
             </div>
             <div id="progress"></div>
         </div>
         <div id="scoreContainer" style="display: none"></div>
     </div>
-    <script src="quiz.js"></script>
+    <script src="script.js" src="questions.js"></script>
+
 </body>
 </html>
