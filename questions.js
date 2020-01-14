@@ -2,28 +2,37 @@
 
 var questions = [
     {
-    title: "Commonly used data types DO NOT include:",
-    choices: ["strings", "booleans", "alerts", "numbers"],
-    answer: "alerts"
+    question: "Commonly used data types DO NOT include:",
+    choiceA: "strings",
+    choiceB: "booleans",
+    choiceC: "alerts",
+    choiceD: "numbers",
+    answer: "C",
   },
   {
     title: "The condition in an if / else statement is enclosed within ____.",
-    choices: ["quotes", "curly brackets", "parentheses", "square brackets"],
-    answer: "parentheses"
+    choiceA: "quotes", 
+    choiceB: "curly brackets", 
+    choiceC: "parentheses", 
+    choiceD: "square brackets",
+    answer: "C"
   },
     {
     title: "Arrays in JavaScript can be stored in..",
-    choices: ["Numbers and strings", "Booleans", "Other Arrays", "All the Above"],
-    answer: "All the Above"
+    choiceA: "Numbers and strings", 
+    choiceB: "Booleans", 
+    choiceC: "Other Arrays", 
+    choiceD: "All the Above",
+    answer: "D",
   },
   {
     title: "String values must be enclosed within ____ when being assigned to varibles?",
-    choices: ["quotes", "curly brackets", "parentheses", "square brackets"],
+    choice: ["quotes", "curly brackets", "parentheses", "square brackets"],
     answer: "quotes"
   },
       {
     title: "What is the most common way to make a loop in JavaScript?",
-    choices: ["while ()", "for ()", "loop ()", "if ()"],
+    choice: ["while ()", "for ()", "loop ()", "if ()"],
     answer: "for ()"
   },
   
