@@ -10,7 +10,7 @@ var questions = [
     answer: "C",
   },
   {
-    title: "The condition in an if / else statement is enclosed within ____.",
+    quesiton: "The condition in an if / else statement is enclosed within ____.",
     choiceA: "quotes", 
     choiceB: "curly brackets", 
     choiceC: "parentheses", 
@@ -18,7 +18,7 @@ var questions = [
     answer: "C"
   },
     {
-    title: "Arrays in JavaScript can be stored in..",
+    quesiton: "Arrays in JavaScript can be stored in..",
     choiceA: "Numbers and strings", 
     choiceB: "Booleans", 
     choiceC: "Other Arrays", 
@@ -26,13 +26,19 @@ var questions = [
     answer: "D",
   },
   {
-    title: "String values must be enclosed within ____ when being assigned to varibles?",
-    choice: ["quotes", "curly brackets", "parentheses", "square brackets"],
+    quesiton: "String values must be enclosed within ____ when being assigned to varibles?",
+    choiceA: "quotes", 
+    choiceB: "curly brackets", 
+    choiceC: "parentheses", 
+    choiceD: "square brackets",
     answer: "quotes"
   },
       {
-    title: "What is the most common way to make a loop in JavaScript?",
-    choice: ["while ()", "for ()", "loop ()", "if ()"],
+    quesiton: "What is the most common way to make a loop in JavaScript?",
+    choiceA: "while ()", 
+    choiceB:  "for ()", 
+    choiceC: "loop ()", 
+    choiceD:  "if ()",
     answer: "for ()"
   },
   
