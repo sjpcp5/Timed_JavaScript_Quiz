@@ -120,3 +120,35 @@ function checkAnswer(answer){
         answerIsWrong();
     }
 };
+
+start.addEventListener("click", startQuiz);
+
+function startQuiz(){
+    start.style.display = "none";
+    counterRender();
+    TIMER =setInterval(counterRender,1000);
+    progressRender();
+    questionRender();
+    quiz.style.display = "block";
+}
+
+/* tenary operator if statement if(Y == "one") { X = 1; } else { X = 0;}
+else if statement 
+if( Y == "one"){ 
+    X = 1; 
+    } else if (Y == "zero"){
+     X = 0; 
+    } else {
+    X = 2; 
+}  */
+
+function scoreRender(){
+    scoreContainer.style.display = "block";
+    let scorePerCent = Math.round(100 * score / quesitons.length);
+    let img = ( scorePerCent >= 80) ? "img/5.png":
+                (scorePerCent >= 60) ? "img/4.png":
+                (scorePerCent >= 40) ? "img/3.png":
+                (scorePerCent >= 20) ? "img/2.png": "img/1.png";
+
+    scoreContainer.innerHTML = "<img src>" + img + scoreText;
+}           
