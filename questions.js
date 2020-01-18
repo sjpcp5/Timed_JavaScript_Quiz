@@ -1,5 +1,3 @@
-
-
 var questions = [
     {
     question: "Commonly used data types DO NOT include:",
@@ -10,7 +8,7 @@ var questions = [
     answer: "C",
   },
   {
-    quesiton: "The condition in an if / else statement is enclosed within ____.",
+    question: "The condition in an if / else statement is enclosed within ____.",
     choiceA: "quotes", 
     choiceB: "curly brackets", 
     choiceC: "parentheses", 
@@ -18,7 +16,7 @@ var questions = [
     answer: "C"
   },
     {
-    quesiton: "Arrays in JavaScript can be stored in..",
+    question: "Arrays in JavaScript can be stored in..",
     choiceA: "Numbers and strings", 
     choiceB: "Booleans", 
     choiceC: "Other Arrays", 
@@ -26,15 +24,15 @@ var questions = [
     answer: "D",
   },
   {
-    quesiton: "String values must be enclosed within ____ when being assigned to varibles?",
+    question: "String values must be enclosed within ____ when being assigned to varibles?",
     choiceA: "quotes", 
     choiceB: "curly brackets", 
     choiceC: "parentheses", 
     choiceD: "square brackets",
-    answer: "quotes"
+    answer: "A"
   },
       {
-    quesiton: "What is the most common way to make a loop in JavaScript?",
+    question: "What is the most common way to make a loop in JavaScript?",
     choiceA: "while ()", 
     choiceB:  "for ()", 
     choiceC: "loop ()", 

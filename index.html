@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css"/>
+    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"> </script>
+    <script src="questions.js" type= "text/JavaScript"></script>
 </head>
 <body class="bg-light-blue black-70 pa4">
 <nav id="High Score flex justify-between bb b--yellow-50">
@@ -12,7 +14,7 @@
     <br>
     <br>
     <div id="timer pa3 flex items-center">
-        <div id="counter yellow dim mr3 mr4-ns" href="#0"></div>
+        <div id="counter"></div>
         <div id="btimeGauge"></div>
         <div id="timeGauge"></div>
     </div>
@@ -20,8 +22,8 @@
     <div id="container">
         <div id="start">Start Quiz!</div>
         <div id="quiz" style="display: none">
-            <div id="quesiton"></div>
-            
+            <div id="question"></div>
+            <br>
             <div id="choices">
                 <div class="choice" id="A" onclick="checkAnswer('A')"></div>
                 <div class="choice" id="B" onclick="checkAnswer('B')"></div>
@@ -33,9 +35,10 @@
             <div id="progress"></div>
         </div>
         <div id="scoreContainer" style="display: none"></div>
-        <div id="score-text flex bb b--yellow-20">score-text %</div>
+            <div id="score-text">score-text %</div>
     </div>
-    <script src="script.js" src="questions.js"></script>
+    <script src="script.js"></script>
+    
 
 </body>
 </html>

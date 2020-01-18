@@ -50,15 +50,15 @@
 // 2 display score
 // 3 if they made high score list, add them
 
-var start = document.getElementById("start");
-var quiz = document.getElementById("quiz");
-var question = document.getElementById("questions");
-var counter = document.getElementById("counter");
-var timeGauge = document.getElementById("timeGauge");
-var choiceA = document.getElementById('A');
-var choiceB = document.getElementById('B');
-var choiceC = document.getElementById('C');
-var choiceD = document.getElementById('D');
+const start = document.getElementById("start");
+const quiz = document.getElementById("quiz");
+const questionEl = document.getElementById("question");
+const counter = document.getElementById("counter");
+const timeGauge = document.getElementById("timeGauge");
+const choiceA = document.getElementById('A');
+const choiceB = document.getElementById('B');
+const choiceC = document.getElementById('C');
+const choiceD = document.getElementById('D');
 var timeLeft = 90;
 var HighScoresEl = document.getElementById('link');
 var HighScores = [];
@@ -68,25 +68,100 @@ var progress = document.getElementById('progress');
 var scoreContainer = document.getElementById('scoreContainer');
 var scoreText = document.getElementById('score-text');
 
-let lastQuestionIndex = questions.length - 1; 
+// jquery load of questions script
+// $.getScript("questions.js", function(){
+//     alert("Questions loaded but not executed yet.");
+// });
 
-let runningQuesitonIndex = 0;
+// let questions = [
+//     {
+//     question : "Commonly used data types DO NOT include:",
+//     choiceA : "strings",
+//     choiceB : "booleans",
+//     choiceC : "alerts",
+//     choiceD : "numbers",
+//     correct : "C",
+//   },
+//   {
+//     question : "The condition in an if / else statement is enclosed within ____.",
+//     choiceA : "quotes", 
+//     choiceB : "curly brackets", 
+//     choiceC : "parentheses", 
+//     choiceD : "square brackets",
+//     correct : "C"
+//   },
+//     {
+//     question : "Arrays in JavaScript can be stored in..",
+//     choiceA : "Numbers and strings", 
+//     choiceB : "Booleans", 
+//     choiceC : "Other Arrays", 
+//     choiceD : "All the Above",
+//     correct : "D",
+//   },
+//   {
+//     question : "String values must be enclosed within ____ when being assigned to varibles?",
+//     choiceA : "quotes", 
+//     choiceB : "curly brackets", 
+//     choiceC : "parentheses", 
+//     choiceD : "square brackets",
+//     correct : "A"
+//   },
+//       {
+//     question : "What is the most common way to make a loop in JavaScript?",
+//     choiceA : "while ()", 
+//     choiceB :  "for ()", 
+//     choiceC : "loop ()", 
+//     choiceD :  "if ()",
+//     correct : "B"
+//   },
+  
+//     ];
 
-// tying a function to render quesitons in HTML through JavaScript 
-function renderingQuestions(){
-    let q = quesitons[runningQuesitonIndex];
-    question.innerHTML = "<p>" + q.question + "</p>";
-    choiceA.innerHTML = q.choiceA;
-    choiceB.innerHTML = q.choiceB;
-    choiceC.innerHTML = q.choiceC;
-    choiceD.innerHTML = q.choiceD;
-};
+const lastQuestionIndex = questions.length -1; 
+let runningQuestionIndex = 0;
 
 //varaibles and functions for timer gauge
 const questionTime = 10; // 10 sec per question
 const gaugeWidth = 180; // pixels
 let count = 0;
 const gaugeProgressUnit = gaugeWidth/questionTime;
+let TIMER;
+let score = 0;
+
+// tying a function to render quesitons in HTML through JavaScript 
+function renderingQuestions(){
+    let q = questions[runningQuestionIndex];
+    questionEl.innerHTML = "<p>" + q.question + "</p>";
+    choiceA.innerHTML = q.choiceA;
+    choiceB.innerHTML = q.choiceB;
+    choiceC.innerHTML = q.choiceC;
+    choiceD.innerHTML = q.choiceD;
+    console.log(q.question)
+    console.log(q)
+};
+
+start.addEventListener("click", startQuiz);
+
+// start quiz funciton with timer
+function startQuiz(){
+    start.style.display = "none";
+    renderingQuestions();
+    quiz.style.display = "block";
+    counterRender();
+    renderProgress();
+    TIMER =setInterval(counterRender,1000);
+    
+};
+
+
+
+function renderProgress(){
+    for(let qIndex = 0; qIndex <= lastQuestionIndex; qIndex++)
+    { progress.innerHTML += "<div class= 'prog' id="+ qIndex +"></div>";
+    };
+};
+
+
 
 function counterRender(){
     if(count <= questionTime){
@@ -98,39 +173,49 @@ function counterRender(){
     } else {
         count = 0;
         answerIsWrong();
-        if (runningQuesitonIndex < lastQuestionIndex) {
-            runningQuesitonIndex++;
-            question();
-        } else { clearInterval(TIMER);
-            
-        
-        
+        if (runningQuestionIndex < lastQuestionIndex) {
+            runningQuestionIndex++;
+            renderingQuestions();
+        } else { 
+            // end quiz and show score
+            clearInterval(TIMER);
+            scoreRender();
+                   
         }
 
     }
 };
 
-let TIMER = setInterval(counterRender,1000);
 
-function checkAnswer(answer){
-    if(questions[runningQuesitonIndex].correct == answer){
+function checkAnswer(choice){
+    if(choice == questions[runningQuestionIndex].correct){
         score++;
         answerIsCorrect();
     } else {
         answerIsWrong();
     }
+    count = 0;
+        answerIsWrong();
+        if (runningQuestionIndex < lastQuestionIndex) {
+            runningQuestionIndex++;
+            renderingQuestions();
+        } else { 
+            // end quiz and show score
+            clearInterval(TIMER);
+            scoreRender();
+                   
+        };
+
 };
 
-start.addEventListener("click", startQuiz);
+function answerIsCorrect(){
+    document.getElementById(runningQuestionIndex).style.backgroundColor = "#0f0"
+};
 
-function startQuiz(){
-    start.style.display = "none";
-    counterRender();
-    TIMER =setInterval(counterRender,1000);
-    progressRender();
-    questionRender();
-    quiz.style.display = "block";
-}
+function answerIsWrong(){
+    document.getElementById(runningQuestionIndex).style.backgroundColor = "#f00"
+
+};
 
 /* tenary operator if statement if(Y == "one") { X = 1; } else { X = 0;}
 else if statement 
@@ -144,11 +229,12 @@ if( Y == "one"){
 
 function scoreRender(){
     scoreContainer.style.display = "block";
-    let scorePerCent = Math.round(100 * score / quesitons.length);
-    let img = ( scorePerCent >= 80) ? "img/5.png":
-                (scorePerCent >= 60) ? "img/4.png":
-                (scorePerCent >= 40) ? "img/3.png":
-                (scorePerCent >= 20) ? "img/2.png": "img/1.png";
+    let scorePerCent = Math.round(100 * score / questions.length);
+    let img = ( scorePerCent >= 80) ? "/img/5.png":
+                (scorePerCent >= 60) ? "/img/4.png":
+                (scorePerCent >= 40) ? "/img/3.png":
+                (scorePerCent >= 20) ? "/img/2.png": "./img/1.png";
 
     scoreContainer.innerHTML = "<img src>" + img + scoreText;
 }           
+
