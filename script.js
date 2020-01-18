@@ -1,10 +1,10 @@
 // HAVES:
-// Array of questions
-// HTML Interface-- 
-// Start Button
-// Timer (text box)
-// Button "View high scores"
-// Div to show high scores
+// Array of questions1
+// HTML Interface--1 
+// Start Button1
+// Timer (text box)1
+// Button "View high scores"1
+// Div to show high scores1
 // Instructions
 // Text box for the question
 // Div to hold buttons for answers
@@ -49,3 +49,74 @@
 // 1 hide unnecessary stuff
 // 2 display score
 // 3 if they made high score list, add them
+
+var start = document.getElementById("start");
+var quiz = document.getElementById("quiz");
+var question = document.getElementById("questions");
+var counter = document.getElementById("counter");
+var timeGauge = document.getElementById("timeGauge");
+var choiceA = document.getElementById('A');
+var choiceB = document.getElementById('B');
+var choiceC = document.getElementById('C');
+var choiceD = document.getElementById('D');
+var timeLeft = 90;
+var HighScoresEl = document.getElementById('link');
+var HighScores = [];
+
+var progress = document.getElementById('progress');
+
+var scoreContainer = document.getElementById('scoreContainer');
+var scoreText = document.getElementById('score-text');
+
+let lastQuestionIndex = questions.length - 1; 
+
+let runningQuesitonIndex = 0;
+
+// tying a function to render quesitons in HTML through JavaScript 
+function renderingQuestions(){
+    let q = quesitons[runningQuesitonIndex];
+    question.innerHTML = "<p>" + q.question + "</p>";
+    choiceA.innerHTML = q.choiceA;
+    choiceB.innerHTML = q.choiceB;
+    choiceC.innerHTML = q.choiceC;
+    choiceD.innerHTML = q.choiceD;
+};
+
+//varaibles and functions for timer gauge
+const questionTime = 10; // 10 sec per question
+const gaugeWidth = 180; // pixels
+let count = 0;
+const gaugeProgressUnit = gaugeWidth/questionTime;
+
+function counterRender(){
+    if(count <= questionTime){
+        counter.innerHTML = count;
+        timeGauge.style.width = gaugeProgressUnit * count + "px" ;
+        count++;
+
+
+    } else {
+        count = 0;
+        answerIsWrong();
+        if (runningQuesitonIndex < lastQuestionIndex) {
+            runningQuesitonIndex++;
+            question();
+        } else { clearInterval(TIMER);
+            
+        
+        
+        }
+
+    }
+};
+
+let TIMER = setInterval(counterRender,1000);
+
+function checkAnswer(answer){
+    if(questions[runningQuesitonIndex].correct == answer){
+        score++;
+        answerIsCorrect();
+    } else {
+        answerIsWrong();
+    }
+};

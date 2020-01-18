@@ -89,7 +89,7 @@ body{
     font-size: 3em;
 }
 #btimeGauge{
-    width : 150px;
+    width : 180px;
     height : 10px;
     border-radius: 10px;
     background-color: lightgray;
