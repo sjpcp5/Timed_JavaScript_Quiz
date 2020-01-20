@@ -65,8 +65,8 @@ var HighScores = [];
 
 var progress = document.getElementById('progress');
 
-var scoreContainer = document.getElementById('scoreContainer');
-var scoreText = document.getElementById('score-text');
+var scoreContainerEl = document.getElementById('scoreContainer');
+var scoreTextEl = document.getElementById('score-text');
 
 
 
@@ -185,14 +185,17 @@ if( Y == "one"){
 }  */
 
 function scoreRender(){
-    scoreContainer.style.display = "block";
+    scoreContainerEl.style.display = "block";
     let scorePerCent = Math.round(100 * score / questions.length);
-    let img = ( scorePerCent >= 80) ? "img/5.png":
-                (scorePerCent >= 60) ? "img/4.png":
-                (scorePerCent >= 40) ? "img/3.png":
-                (scorePerCent >= 20) ? "img/2.png": "img/1.png";
+    let img = (scorePerCent >= 80) ? "./img/5.png" :
+                (scorePerCent >= 60) ? "./img/4.png" :
+                (scorePerCent >= 40) ? "./img/3.png" :
+                (scorePerCent >= 20) ? "./img/2.png" : "./img/1.png";
 
-    scoreContainer.innerHTML = "<img src=" + img + ">";
-    scoreContainer.innerHTML = "<p>" + scorePerCent + "%</p>";
-}           
-
+    scoreContainerEl.innerHTML = "<img src=" + img + ">";
+    scoreContainerEl.innerHTML += "<p>" + scorePerCent + "%</p>";
+    scoreContainerEl.innerHTML += "<br>" + "<input id=UserName placeholder= EnterName >" + "<br>";
+    scoreContainerEl.innerHTML += "<br>" + "<button onclick=" + "id=submitBtn >" + 'Submit' + "</button>"  
+};           
+var UserNameEl = document.getElementById("#UserName");
+var submitBtnEl = document.getElementById("#submitBtn");
