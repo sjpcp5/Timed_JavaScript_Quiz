@@ -68,61 +68,14 @@ var progress = document.getElementById('progress');
 var scoreContainer = document.getElementById('scoreContainer');
 var scoreText = document.getElementById('score-text');
 
-// jquery load of questions script
-// $.getScript("questions.js", function(){
-//     alert("Questions loaded but not executed yet.");
-// });
 
-// let questions = [
-//     {
-//     question : "Commonly used data types DO NOT include:",
-//     choiceA : "strings",
-//     choiceB : "booleans",
-//     choiceC : "alerts",
-//     choiceD : "numbers",
-//     correct : "C",
-//   },
-//   {
-//     question : "The condition in an if / else statement is enclosed within ____.",
-//     choiceA : "quotes", 
-//     choiceB : "curly brackets", 
-//     choiceC : "parentheses", 
-//     choiceD : "square brackets",
-//     correct : "C"
-//   },
-//     {
-//     question : "Arrays in JavaScript can be stored in..",
-//     choiceA : "Numbers and strings", 
-//     choiceB : "Booleans", 
-//     choiceC : "Other Arrays", 
-//     choiceD : "All the Above",
-//     correct : "D",
-//   },
-//   {
-//     question : "String values must be enclosed within ____ when being assigned to varibles?",
-//     choiceA : "quotes", 
-//     choiceB : "curly brackets", 
-//     choiceC : "parentheses", 
-//     choiceD : "square brackets",
-//     correct : "A"
-//   },
-//       {
-//     question : "What is the most common way to make a loop in JavaScript?",
-//     choiceA : "while ()", 
-//     choiceB :  "for ()", 
-//     choiceC : "loop ()", 
-//     choiceD :  "if ()",
-//     correct : "B"
-//   },
-  
-//     ];
 
 const lastQuestionIndex = questions.length -1; 
 let runningQuestionIndex = 0;
 
 //varaibles and functions for timer gauge
 const questionTime = 10; // 10 sec per question
-const gaugeWidth = 180; // pixels
+const gaugeWidth = 150; // pixels
 let count = 0;
 const gaugeProgressUnit = gaugeWidth/questionTime;
 let TIMER;
@@ -187,15 +140,19 @@ function counterRender(){
 };
 
 
-function checkAnswer(choice){
-    if(choice == questions[runningQuestionIndex].correct){
+function checkAnswer(answer){
+  if(answer == questions[runningQuestionIndex].answer){
         score++;
+        console.log(score)
+        console.log(checkAnswer);
+        console.log(answer);
+        console.log(runningQuestionIndex);
         answerIsCorrect();
     } else {
         answerIsWrong();
-    }
+    };
+
     count = 0;
-        answerIsWrong();
         if (runningQuestionIndex < lastQuestionIndex) {
             runningQuestionIndex++;
             renderingQuestions();
@@ -230,11 +187,12 @@ if( Y == "one"){
 function scoreRender(){
     scoreContainer.style.display = "block";
     let scorePerCent = Math.round(100 * score / questions.length);
-    let img = ( scorePerCent >= 80) ? "/img/5.png":
-                (scorePerCent >= 60) ? "/img/4.png":
-                (scorePerCent >= 40) ? "/img/3.png":
-                (scorePerCent >= 20) ? "/img/2.png": "./img/1.png";
+    let img = ( scorePerCent >= 80) ? "img/5.png":
+                (scorePerCent >= 60) ? "img/4.png":
+                (scorePerCent >= 40) ? "img/3.png":
+                (scorePerCent >= 20) ? "img/2.png": "img/1.png";
 
-    scoreContainer.innerHTML = "<img src>" + img + scoreText;
+    scoreContainer.innerHTML = "<img src=" + img + ">";
+    scoreContainer.innerHTML = "<p>" + scorePerCent + "%</p>";
 }           
 
