@@ -67,7 +67,7 @@ var progress = document.getElementById('progress');
 
 var scoreContainerEl = document.getElementById('scoreContainer');
 var scoreTextEl = document.getElementById('score-text');
-
+var formScoreEL = document.getElementById("#score-form")
 
 
 const lastQuestionIndex = questions.length -1; 
@@ -75,7 +75,7 @@ let runningQuestionIndex = 0;
 
 //varaibles and functions for timer gauge
 const questionTime = 10; // 10 sec per question
-const gaugeWidth = 150; // pixels
+const gaugeWidth = 180; // pixels
 let count = 0;
 const gaugeProgressUnit = gaugeWidth/questionTime;
 let TIMER;
@@ -194,8 +194,67 @@ function scoreRender(){
 
     scoreContainerEl.innerHTML = "<img src=" + img + ">";
     scoreContainerEl.innerHTML += "<p>" + scorePerCent + "%</p>";
-    scoreContainerEl.innerHTML += "<br>" + "<input id=UserName placeholder= EnterName >" + "<br>";
-    scoreContainerEl.innerHTML += "<br>" + "<button onclick=" + "id=submitBtn >" + 'Submit' + "</button>"  
+    scoreContainerEl.innerHTML += "<input id=" + "userName" + "type=" + "text" + "placeholder=" + "EnterName" + ">" + "</input>" + "<br>";
+    scoreContainerEl.innerHTML += "<button id=" + "submitBtn" + "name=" + "submit" + "onClick=" + "submitButton()" +">"+ "</button>";
 };           
 var UserNameEl = document.getElementById("#UserName");
 var submitBtnEl = document.getElementById("#submitBtn");
+var highscoreListEl = document.getElementById("#HighScorers");
+var scorerSpanCount = document.getElementById("#Scorers-count");
+
+function renderHighScorers(){
+    // clear highscore element and update scorerCountSpan
+    highscoreListEl.innerHTML =""  +  score;
+    scorerSpanCount.textContent = HighScores.length;
+
+    for (var i =0; i < HighScores.length; i++){
+        var ballers = HighScores[i];
+
+        var li = document.createElement("li");
+        li.textContent = ballers;
+        li.setAttribute("data-index", i);
+
+        li.append(submitBtnEl);
+        highscoreListEl.appendChild(li);
+    }
+};
+
+function Nameinside(){
+     // Get stored names from localStorage
+  // Parsing the JSON string to an object
+    var storedBallers = JSON.parse(localStorage.getItem("HighScores"));
+
+    // If todos were retrieved from localStorage, update the names array to it
+    if(storedBallers !==null) {
+        HighScores = storedBallers;
+    }
+    renderHighScorers();
+};
+console.log(Nameinside);
+
+function storeBallers() {
+    // stringify and set "todos" key in localStorage to todos array
+    localStorage.setItem("HighScores", JSON.stringify(HighScores));
+};
+
+//when form is submitted
+function submitButton(){
+    
+
+    var ballersText = UserNameEl.value.trim();
+
+    if (ballersText === "") {
+        return;
+    };
+
+    HighScores.push(ballersText);
+    UserNameEl.value = "";
+    console.log(UserNameEl.value)
+    console.log(HighScores);
+    //store updated high scorers in localStorage 
+    storeBallers();
+    renderHighScorers();
+    console.log(storeBallers + "...");
+    console.log(renderHighScorers + ".....");
+    console.log(HighScores + "...");
+};

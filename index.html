@@ -10,7 +10,7 @@
 </head>
 <body class="bg-light-blue black-70 pa4">
 <nav id="High Score flex justify-between bb b--yellow-50">
-    <a id="link yellow-70 hover-white no-underline flex items-center pa3" href="">High Scores</a>
+    <a id="link yellow-70 hover-white no-underline flex items-center pa3" href="highscores.html">High Scores</a>
     <br>
     <br>
     <div id="timer pa3 flex items-center">
@@ -34,8 +34,9 @@
             </div>
             <div id="progress"></div>
         </div>
-        <div id="scoreContainer" style="display: none"></div>
-        <div id="score-text"></div>
+        <form id="scoreContainer" style="display: none" method="POST">
+            <div id="score-text"></div>
+        </form>
     </div>
    
     <script src="script.js"></script>
